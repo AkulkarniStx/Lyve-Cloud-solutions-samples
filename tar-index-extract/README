@@ -26,6 +26,14 @@ operation on an S3 bucket to achieve this.
 Config - S3 connection config details are read from conn.conf in config directory
 which is at the same level as tar_tool.py
 
+NOTE:
+1. Please replace the placeholders in conn.conf with valid Access and Secret
+key.
+2. The tar file needs to be uploaded to the descired bucket after indexing along
+with its index file.
+3. To test run this use the sample tar files. Create index, upload tar file along
+with index file to bucket, lastly extract a file or two from the tar.
+
 ################################################################################
 
 The usage of the tool is as follows:
