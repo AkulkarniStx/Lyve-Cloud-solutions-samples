@@ -28,8 +28,8 @@ which is at the same level as tar_tool.py
 
 NOTE:
 1. Please replace the placeholders in conn.conf with valid Access and Secret
-key.
-2. The tar file needs to be uploaded to the descired bucket after indexing along
+key with access to the desired bucket.
+2. The tar file needs to be uploaded to the desired bucket after indexing along
 with its index file.
 3. To test run this use the sample tar files. Create index, upload tar file along
 with index file to bucket, lastly extract a file or two from the tar.
