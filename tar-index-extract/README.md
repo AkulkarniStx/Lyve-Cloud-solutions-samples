@@ -114,7 +114,6 @@ Done extracting ['one.txt', 'four.txt'] to C:\Users\akulkarni\tools\index-tar\ou
 
 ## Tested by
 * Sept 04, 2022: Arati Kulkarni (arati.kulkarni@seagate.com) on Windows 10
-* month day, year: full_name (email) on your_environment
 
 ## Structure
 This section will describe the representation of each of the folders or files in the structure.
