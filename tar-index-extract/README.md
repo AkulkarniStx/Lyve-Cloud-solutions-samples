@@ -23,8 +23,8 @@ operation on an S3 bucket to achieve this.
 Ability to run Python 3.8 and above
 
 ## Known Limitations 
-This is a prrof of concept for Tar file Indexing capabilities and Partial Tar File retrieval capabilities. 
-Additional features or customemization is left up to the reader.
+This is a proof of concept for Tar file Indexing capabilities and Partial Tar File retrieval capabilities. 
+Additional features or customization is left up to the reader.
 
 
 ## Running Steps
@@ -57,7 +57,7 @@ optional arguments:
   --tarfile TARFILE     Name of the tarfile that needs to be indexed
   --path PATH           Path to a directory containing tarfiles, all *.tar
                         files in dir will be indexed
-  --extract EXTRACT     Comma seperated list of the tarfile and files to be
+  --extract EXTRACT     Comma separated list of the tarfile and files to be
                         extracted from that tarfile
   --outputpath OUTPUTPATH
                         Path to a directory where extracted files will be kept
@@ -116,9 +116,7 @@ Done extracting ['one.txt', 'four.txt'] to C:\Users\akulkarni\tools\index-tar\ou
 * August 22, 2021: Bari Arviv (bari.arviv@seagate.com) on Ubuntu 20.4
 * month day, year: full_name (email) on your_environment
 
-## **Note:** All files should be uploaded (all the files you used for the integration solution) under one folder, including the README.md file. 
-### Project Structure
-
+## Structure
 This section will describe the representation of each of the folders or files in the structure.
 ```
 .
