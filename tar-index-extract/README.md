@@ -113,7 +113,7 @@ Done writing the file four.txt
 Done extracting ['one.txt', 'four.txt'] to C:\Users\akulkarni\tools\index-tar\output\tfile
 
 ## Tested by
-* August 22, 2021: Bari Arviv (bari.arviv@seagate.com) on Ubuntu 20.4
+* Sept 04, 2022: Arati Kulkarni (arati.kulkarni@seagate.com) on Windows 10
 * month day, year: full_name (email) on your_environment
 
 ## Structure
