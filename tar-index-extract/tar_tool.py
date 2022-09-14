@@ -179,7 +179,7 @@ if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument("--tarfile", help="Name of the tarfile that needs to be indexed")
     parser.add_argument("--path", help="Path to a directory containing tarfiles, all *.tar files in dir will be indexed")
-    parser.add_argument("--extract", help="Comma seperated list of the tarfile and files to be extracted from that tarfile")
+    parser.add_argument("--extract", help="Comma separated list of the tarfile and files to be extracted from that tarfile")
     parser.add_argument("--outputpath", help="Path to a directory where extracted files will be kept", default=os.getcwd())
     parser.add_argument("--bucketname", help="Name of the S3 bucket to get data from", default='tar-exp0')
     parser.add_argument("--configfile", help="Path to config File",
