@@ -9,23 +9,30 @@
               
 
 ## Introduction
-This script will perform 2 functions.
-1. Index a give tar file or tar files in a directory
-2. Extract only those files inside a tar given the names of the files inside the tar and the tar file name from an
-S3 bucket.
+This script is capable of performing following two functions, index a tar file and partial extract from the tar file using extract function.
 
-The idea is to minimize the number of uploads to an s3 bucket by taring a lot of small files into a big tar.
-Then upload the tar to a bucket. In order to only pull out small chunk of the files in a big tar, the index is used to
-find the location of each file within the tar. The start and end location of the files is used along with get byterange
-operation on an S3 bucket to achieve this. 
+1. First create index for a given tar file or tar files in a directory. Once a tar is indexed, the tar file and the corresponding index file are uploaded to the bucket. This is a prerequisite to the extract step.
+2. When there is a need to extract some data sitting in an S3 bucket, the extract function can be used. It will extract only the given filename(s) in the given tar name(s) from the S3 bucket. 
+
+The idea is to minimize the number of uploads to an s3 bucket by tarring a lot of small files into a big tar.
+This helps with a better throughput during upload process. 
+
+When a few of the files are needed some at a later time, the whole tar is not needed to be downloaded. This saves time and network costs during download.
+To only get a small chunk of the files that are part of a big tar, the index is used to find the location of each file within the tar. The start and end location of the file is used along with *get byterange* operation on an S3 bucket to achieve this. 
 
 ## Requirements
-Ability to run Python 3.8 and above
+* Ability to run Python 3.9 and above
+* Following Python modules/libraries
+  - ArgumentParser from argparse
+  - boto3
+  - csv
+  - datetime
+  - tarfile
+  - tprint from art (for the banner only)
 
 ## Known Limitations 
 This is a proof of concept for Tar file Indexing capabilities and Partial Tar File retrieval capabilities. 
 Additional features or customization is left up to the reader.
-
 
 ## Running Steps
 **Step 1:** Get your Lyve Cloud bucket credentials.   
@@ -38,16 +45,19 @@ Here's what you'll need:
 Config - S3 connection config details are read from conn.conf in config directory
 which is at the same level as tar_tool.py
 
-1. Please replace the placeholders in conn.conf with valid Access and Secret
+1. Replace the placeholders in conn.conf with valid Access and Secret
 key with access to the desired bucket.
 2. The tar file needs to be uploaded to the desired bucket after indexing along
-with its index file.
-3. To test run this use the sample tar files. Create index, upload tar file along
-with index file to bucket, lastly extract a file or two from the tar.
+with its index file. Note: this step is a prerequisite to using Extract capability.
+3. To test this tool out 
+    -   First Create index for a tar file.
+    -   Next upload the tar file along with index file to the bucket.
+    -   Lastly extract a file or two from the tar.
+    -   You can use the sample tar files included here.
 
 ## Usage
 The usage of the tool is as follows:
-
+```
 usage: tar_tool.py [-h] [--tarfile TARFILE] [--path PATH] [--extract EXTRACT]
                    [--outputpath OUTPUTPATH] [--bucketname BUCKETNAME]
                    [--configfile CONFIGFILE]
@@ -65,14 +75,12 @@ optional arguments:
                         Name of the S3 bucket to get data from
   --configfile CONFIGFILE
                         Path to config File
+```
+## Sample Output - Indexing a tar file
 
-## Results 
-Example of Index a tarfile
-python3 C:\Users\akulkarni\tools\index-tar\tar_tool.py
---tarfile C:\Users\akulkarni\tools\index-tar\tfile.tar
+```
+python3 C:\Users\akulkarni\tools\index-tar\tar_tool.py --tarfile C:\Users\akulkarni\tools\index-tar\tfile.tar
 
-Sample Output
----------------------------------------
 Running Tar Tool with following options:
    tarfile: C:\Users\akulkarni\tools\index-tar\tfile.tar
    path: None
@@ -84,17 +92,20 @@ Starting Indexing for C:\Users\akulkarni\tools\index-tar\tfile.tar
 
 Done indexing tar C:\Users\akulkarni\tools\index-tar\tfile.tar,
 Index file: C:\Users\akulkarni\tools\index-tar\tfile.index
+```
 
 
-Example of Extract some files from tarfile
+
+## Sample Output - Extracting files from a tar
+
+Note: The tool creates a directory with the name of tarfile under given output path, and extracts file(s) in it.
+
+```
 python3 C:\Users\akulkarni\tools\index-tar\tar_tool.py
 --extract C:\Users\akulkarni\tools\index-tar\tfile.tar,one.txt,four.txt
 --outputpath C:\Users\akulkarni\tools\index-tar\output
 --bucket tar-exp0
-Note: The tool creates a directory with the name of tarfile under given output path, and extracts file in it.
 
-Sample Output
----------------------------------------
 Running Tar Tool with following options:
    tarfile: None
    path: None
@@ -111,7 +122,7 @@ Collecting four.txt from Byte Range: bytes=512-62363
 Done writing the file four.txt
 
 Done extracting ['one.txt', 'four.txt'] to C:\Users\akulkarni\tools\index-tar\output\tfile
-
+```
 ## Tested by
 * Sept 04, 2022: Arati Kulkarni (arati.kulkarni@seagate.com) on Windows 10
 
