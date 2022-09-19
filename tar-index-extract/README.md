@@ -9,7 +9,7 @@
               
 
 ## Introduction
-This script can perform following two functions, index a tar file and partial extract from the tar file using extract function.
+This script can perform two functions, index a tar file and partial extract from the tar file using extract function.
 
 1. First create index for a given tar file or tar files in a directory. Once a tar is indexed, the tar file and the corresponding index file are uploaded to the bucket. This is a prerequisite to the extract step.
 2. When there is a need to extract some data sitting in an S3 bucket, the extract function can be used. It will extract only the given filename(s) in the given tar name(s) from the S3 bucket. 
