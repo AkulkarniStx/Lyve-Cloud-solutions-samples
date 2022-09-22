@@ -1,5 +1,5 @@
 
-# Tar File Index and Extract Tool
+# Using Tar File Index to extract data efficiently
 
              _____                      _____                _
             |_   _|  __ _  _ __        |_   _|  ___    ___  | |
